@@ -87,7 +87,7 @@ func main() {
 		round++
 		// We only want the data from the first 5 rounds so the image is not too cluttered
 		// This is a very cheap way to do it. Won't work with demos that have match-restarts etc.
-		if round == 5 {
+		if round == 1 {
 			// Copy nade paths
 			for _, np := range nadeTrajectories {
 				nadeTrajectoriesFirst5Rounds = append(nadeTrajectoriesFirst5Rounds, np)
