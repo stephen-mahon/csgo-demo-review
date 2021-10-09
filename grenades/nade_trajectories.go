@@ -5,8 +5,8 @@ import (
 	"image"
 	"image/color"
 	"image/draw"
-	"image/jpeg"
 	_ "image/jpeg"
+	"image/png"
 	"os"
 
 	"github.com/golang/geo/r2"
@@ -39,7 +39,7 @@ var (
 // Store the curret map so we don't have to pass it to functions
 var curMap metadata.Map
 
-// Run like this: go run nade_trajectories.go -demo /path/to/demo.dem > nade_trajectories.jpg
+// Run like this: go run nade_trajectories.go -demo C:\Users\Stephen\go\src\csgo-demo-parser\demo\og-vs-sprout-dust2.dem  > nade_trajectories.png
 func main() {
 	f, err := os.Open(ex.DemoPathFromArgs())
 	checkError(err)
@@ -87,7 +87,7 @@ func main() {
 		round++
 		// We only want the data from the first 5 rounds so the image is not too cluttered
 		// This is a very cheap way to do it. Won't work with demos that have match-restarts etc.
-		if round == 15 {
+		if round == 5 {
 			// Copy nade paths
 			for _, np := range nadeTrajectories {
 				nadeTrajectoriesFirst5Rounds = append(nadeTrajectoriesFirst5Rounds, np)
@@ -126,9 +126,7 @@ func main() {
 	drawTrajectories(gc, nadeTrajectoriesFirst5Rounds)
 
 	// Write to standard output
-	err = jpeg.Encode(os.Stdout, dest, &jpeg.Options{
-		Quality: 90,
-	})
+	err = png.Encode(os.Stdout, dest)
 	checkError(err)
 }
 
