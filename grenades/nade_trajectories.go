@@ -39,7 +39,7 @@ var (
 // Store the curret map so we don't have to pass it to functions
 var curMap metadata.Map
 
-// Run like this: go run nade_trajectories.go -demo C:\Users\Stephen\go\src\csgo-demo-parser\demo\og-vs-sprout-dust2.dem  > nade_trajectories.png
+// Run like this: go run nade_trajectories.go -demo /Users/stephen/csgo-demo-review/demo/g2-vs-outsiders-m1-inferno.dem  > nade_trajectories.png
 func main() {
 	f, err := os.Open(ex.DemoPathFromArgs())
 	checkError(err)
@@ -104,7 +104,7 @@ func main() {
 	checkError(err)
 
 	// Use map overview as base image
-	fMap, err := os.Open(fmt.Sprintf("C:\\Users\\Stephen\\go\\src\\csgo-demo-parser\\assets\\maps\\%s.png", header.MapName))
+	fMap, err := os.Open(fmt.Sprintf("/Users/stephen/csgo-demo-review/assets/maps/%s.png", header.MapName))
 	checkError(err)
 
 	imgMap, _, err := image.Decode(fMap)
